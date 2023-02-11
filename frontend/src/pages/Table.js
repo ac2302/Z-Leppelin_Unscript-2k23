@@ -117,7 +117,7 @@ const pusharray = [
 
 const Table = () => {
     const [attemptData, setAttempts] = useState([])
-    const [modal, setModal] = useState("open")
+    const [modal, setModal] = useState("close")
     const [search, setSearch] = useState({
         name : "",
     })
@@ -147,6 +147,23 @@ const Table = () => {
         setAttempts(filterData)
     }
     }
+
+    const handlerModal = (e) => {
+        switch(modal) {
+            case "close" :
+                setModal("open")
+                break;
+            case "open" :
+                setModal("close")
+                break;
+            default :
+                setModal("close")
+                
+        }
+    }
+
+
+    
 
   
 
@@ -208,7 +225,7 @@ const Table = () => {
                             <td>{item.MATURITYDATE}</td>
 
                             <td>
-                            <Btns>
+                            <Btns onClick={handlerModal}>
                             TRADE
                             </Btns>
 
