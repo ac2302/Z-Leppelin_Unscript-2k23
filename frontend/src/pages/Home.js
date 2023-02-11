@@ -9,15 +9,15 @@ import '../styles.css'
 
 
   function Overlay() {
-    useLayoutEffect(() => {
-      const gradient = new Gradient();
-      gradient.initGradient("#gradient-canvas");
-    }, []);
+    // useLayoutEffect(() => {
+    //   const gradient = new Gradient();
+    //   gradient.initGradient("#gradient-canvas");
+    // }, []);
   
     // BondZapp
     return (
       <Main>
-        <canvas id="gradient-canvas" data-transition-in />
+        {/* <canvas id="gradient-canvas" data-transition-in /> */}
         <Container>
         <h1>BondZapp</h1>
         <h2>

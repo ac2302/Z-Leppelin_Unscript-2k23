@@ -62,7 +62,7 @@ const userData = {
   
     return (
       <Main>
-        <canvas id="gradient-canvas" data-transition-in />
+        
         <Container>
         <Left>
         <BgImg>

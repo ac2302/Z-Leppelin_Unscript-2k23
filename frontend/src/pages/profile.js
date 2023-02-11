@@ -89,7 +89,7 @@ function Overlay(props) {
 
   return (
     <Main>
-      <canvas id="gradient-canvas" data-transition-in />
+      
       <Profil>
         <Pic>
           <img className="profilePic" src="./profile.png"></img>
@@ -98,13 +98,16 @@ function Overlay(props) {
           <h3>{props.name}</h3>
         </Name>
         <Name>
-          <h3>{props.name}</h3>
+          <h3>Dashboard</h3>
         </Name>
         <Name>
-          <h3>{props.name}</h3>
+          <h3>All Bonds</h3>
         </Name>
         <Name>
-          <h3>{props.name}</h3>
+          <h3>Wish List</h3>
+        </Name>
+        <Name>
+          <h3>Log Out</h3>
         </Name>
       </Profil>
       <Content>
@@ -194,10 +197,16 @@ const Pic = styled.div`
 `;
 const Name = styled.div`
   border-radius: 5px;
-  padding: 10px 50px 10px 50px;
+  align-items: center;
+   padding: 10px 30px 10px 30px; 
+    min-width: 160px;
+    
   margin: 20px;
   background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
 `;
 
 const LineGraph = styled.div`
