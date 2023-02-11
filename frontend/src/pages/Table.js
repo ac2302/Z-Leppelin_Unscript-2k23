@@ -115,6 +115,8 @@ const pusharray = [
     }
    ]
 
+
+
 const Table = () => {
     const [attemptData, setAttempts] = useState([])
     const [modal, setModal] = useState("close")
@@ -139,9 +141,9 @@ const Table = () => {
             getData()
         }
         else {
-        const filterData = attemptData.filter((item) => {
+        const filterData = pusharray.filter((item) => {
             return (
-                item.quizName.toLowerCase().includes(quiz.toLowerCase())
+                item.SYMBOL.toLowerCase().includes(quiz.toLowerCase())
               )
         })
         setAttempts(filterData)
@@ -256,14 +258,14 @@ const Container = styled.div`
 width: 100%;
 height: 100vh;
 position: relative;
-background: #E6E2E2;
+/* background: #E6E2E2; */
 `;
 
 
 const Attempt = styled.div`
 color: #fff;
 padding: 20px 20px;
-background: #B90E50;
+/* background: #B90E50; */
 height: 100%;
 max-height: 250px;
 h2 {
