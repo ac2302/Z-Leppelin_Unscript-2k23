@@ -194,21 +194,15 @@ router.post("/reset-password", async (req, res) => {
 
 // verify
 router.post("/verify", async (req, res) => {
-	const email = req.body.email;
-	const otp = req.body.otp;
+	const { username, name, pan, panImg } = req.body;
 
-	if (!(otp && email))
-		return res.status(400).json({ msg: "missing email or otp" });
+	if (!(username && name && pan && panImg))
+		return res
+			.status(400)
+			.json({ msg: "missing username, name, pan or panImg in req body" });
 
-	// finding otp
-	const foundOTP = await OTP.findOne({ value: otp });
-
-	if (!foundOTP) return res.status(400).json({ msg: "invalid otp" });
-
-	const user = await User.findById(foundOTP.user);
-
-	if (user.email != email)
-		return res.status(400).json({ msg: "invalid otp" });
+	const user = await User.find({ username });
+	if (!user) return res.status(404).json({ msg: "user not found" });
 
 	user.verified = true;
 
