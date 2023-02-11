@@ -1,5 +1,5 @@
 import React, { useRef, useLayoutEffect } from "react";
-
+import { AllStocks } from "../components/MyStocks";
 import styled from "styled-components";
 import { PieChart } from "@rsuite/charts";
 import { Gradient } from "../../src/lib/gradient";
@@ -74,10 +74,7 @@ export default function Profile() {
 }
 
 function Overlay(props) {
-  useLayoutEffect(() => {
-    const gradient = new Gradient();
-    gradient.initGradient("#gradient-canvas");
-  }, []);
+  
 
   return (
     <Main>
@@ -132,6 +129,7 @@ function Overlay(props) {
         </LineChart>
         </LineGraph>
         </WishList>
+
       </Content>
     </Main>
   );
