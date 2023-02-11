@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useState } from "react";
 
 import styled from "styled-components";
 import { PieChart } from "@rsuite/charts";
@@ -6,6 +6,13 @@ import { Gradient } from "../../src/lib/gradient";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { LineChart, Line, YAxis } from '@rsuite/charts';
+import ProfileContent from '../components/ProfileContent'
+import {useParams} from "react-router-dom"
+import Allbonds from "../components/Allbonds"
+import Dashboard from "../components/Dashboard"
+import Wishlist from "../components/Wishlist"
+
+
 
 
 const linedata = [
@@ -82,36 +89,67 @@ export default function Profile() {
 }
 
 function Overlay(props) {
+  const [compo, setCompo] = useState('')
   useLayoutEffect(() => {
     const gradient = new Gradient();
     gradient.initGradient("#gradient-canvas");
   }, []);
 
+  const handlerRoute = (compo) => {
+    switch(compo) {
+      case "dashboard" :
+        return <Dashboard/>
+       
+        case "allbonds" :
+          return <Allbonds/>
+        
+        case "wishlist" :
+        return <Wishlist/>
+       
+        default :
+        return <ProfileContent/>
+
+    }
+  }
+
+  console.log(compo)
+  
   return (
+    
+
     <Main>
       
       <Profil>
         <Pic>
           <img className="profilePic" src="./profile.png"></img>
         </Pic>
-        <Name>
+        <Name >
           <h3>{props.name}</h3>
         </Name>
-        <Name>
+        <Name onClick={() => setCompo('dashboard')}>
           <h3>Dashboard</h3>
         </Name>
-        <Name>
+        <Name onClick={() => setCompo('allbonds')}>
           <h3>All Bonds</h3>
         </Name>
-        <Name>
+        <Name onClick={() => setCompo('wishlist')}>
           <h3>Wish List</h3>
         </Name>
         <Name>
           <h3>Log Out</h3>
         </Name>
       </Profil>
-      <Content>
-        
+      {/* {
+        handlerRoute()
+      } */}
+    {/* switch  bet */}
+    {
+      compo === 'dashboard' ? <Dashboard/> : compo === "allbonds" ? <Allbonds/> : compo === "wishlist" ? <Wishlist/> : <ProfileContent/>
+    }
+    
+      
+      
+      {/* <Content>
         <Data>
           <Pie>
             <PieData />
@@ -140,7 +178,7 @@ function Overlay(props) {
         </LineChart>
         </LineGraph>
         </WishList>
-      </Content>
+      </Content> */}
     </Main>
   );
 }

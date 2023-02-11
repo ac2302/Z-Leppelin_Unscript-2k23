@@ -28,7 +28,7 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/sign" element={<Sign/>}/>
         <Route path="/verify" element={<Verify/>}/>
-        <Route path="/Profile" element={<Profile/>}/>
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </MainContainer>
     </Router>
