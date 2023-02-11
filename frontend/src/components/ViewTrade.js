@@ -31,14 +31,17 @@ const ViewTrade = ({setModal, modal}) => {
 
     const handlerInput = (e) => {
         const {name, value} = e.target
+        
         console.log(e)
         console.log(name, value)
-        setForm((prev) => {
-            return {
+        if (!isNaN(value)) { // check if value is a number
+            setForm((prev) => {
+              return {
                 ...prev,
-                [name] : value
-            }
-        })
+                [name]: value,
+              };
+            });
+          }
     }
 
     const handlerClose = () => {

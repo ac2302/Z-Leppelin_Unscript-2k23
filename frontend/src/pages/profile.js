@@ -7,6 +7,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { LineChart, Line, YAxis } from '@rsuite/charts';
 
+
 const linedata = [
   ["00:00", 24758, 18180],
   ["01:00", 57666, 73289],
@@ -34,39 +35,46 @@ const linedata = [
   ["23:00", 50878, 8247]
 ]
 
+const StyledArrowDownwardIcon = styled(ArrowDownwardIcon)`
+  color: red;
+`;
+
+const StyledArrowUpwardIcon = styled(ArrowUpwardIcon)`
+  color: green;
+`;
+
 const StockArray = [
   {
     id: 1,
     name : "NHAI",
-    icon : <ArrowUpwardIcon/>
+    icon : <StyledArrowDownwardIcon/>
   },
   {
     id: 2,
     name : "RECLTD",
-    icon : <ArrowDownwardIcon/>
+    icon : <StyledArrowUpwardIcon/>
   },
   {
     id: 3,
     name : "NHBTF2014",
-    icon : <ArrowUpwardIcon/>
+    icon : <StyledArrowUpwardIcon/>
   },
   {
     id: 4,
     name : "IIHFL",
-    icon : <ArrowDownwardIcon/>
+    icon : <StyledArrowDownwardIcon/>
   },
   {
     id: 5,
     name : "IRFC",
-    icon : <ArrowUpwardIcon/>
+    icon : <StyledArrowDownwardIcon/>
   },
   {
     id: 6,
     name : "TATA",
-    icon : <ArrowDownwardIcon/>
+    icon : <StyledArrowDownwardIcon />
   }
 ]
-
 
 
 export default function Profile() {
@@ -269,3 +277,5 @@ const Title = styled.h1`
   width: 100%;
   text-align: center;
 `;
+
+
