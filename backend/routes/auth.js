@@ -86,7 +86,7 @@ router.post("/login", async (req, res) => {
 	if (config.auth.requiresEmailVerification) {
 		if (!foundUser.verified)
 			return res.status(403).json({
-				msg: "you must verify email address before logging in",
+				msg: "you must complete kyc before logging in",
 			});
 	}
 

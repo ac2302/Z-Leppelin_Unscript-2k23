@@ -23,6 +23,9 @@ mongoose.connect(config.db.string, (err) => {
 // routes
 app.use("/auth/", require("./routes/auth"));
 app.use("/user/", require("./routes/user"));
+app.use("/balance/", require("./routes/balance"));
+app.use("/bond/", require("./routes/bond"));
+app.use("/order/", require("./routes/order"));
 
 app.listen(config.server.port, "0.0.0.0", () => {
 	console.log(`server live on port ${config.server.port}`);
