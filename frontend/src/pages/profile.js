@@ -1,5 +1,5 @@
-import React, { useRef, useLayoutEffect, useState } from "react";
-
+import React, { useRef, useLayoutEffect } from "react";
+import { AllStocks } from "../components/MyStocks";
 import styled from "styled-components";
 import { PieChart } from "@rsuite/charts";
 import { Gradient } from "../../src/lib/gradient";
