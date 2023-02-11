@@ -3,7 +3,7 @@ const config = require("../config");
 
 const orderSchema = mongoose.Schema(
 	{
-		Bond: {
+		bond: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Bond",
 		},
@@ -17,7 +17,7 @@ const orderSchema = mongoose.Schema(
 		isFixed: {
 			type: Boolean,
 		},
-		Price: {
+		price: {
 			type: Number,
 		},
 		completed: {
