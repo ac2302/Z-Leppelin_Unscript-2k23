@@ -21,8 +21,20 @@ router.post("/register", async (req, res) => {
 
 	// missing details
 	if (!user) return res.status(400).json({ msg: "missing user in body" });
-	if (!(user.username && user.password && user.email))
-		return res.status(400).json({ msg: "missing username, password or email" });
+	if (
+		!(
+			user.username &&
+			user.password &&
+			user.email &&
+			user.phone &&
+			user.pan &&
+			user.panImg &&
+			user.name
+		)
+	)
+		return res.status(400).json({
+			msg: "missing username, password, email, phone, pan, panImg, or name",
+		});
 
 	// invalid details
 	if ((await User.find({ username: user.username })).length > 0)
@@ -30,6 +42,14 @@ router.post("/register", async (req, res) => {
 	if ((await User.find({ email: user.email })).length > 0)
 		return res.status(400).json({
 			msg: "this email address is already registered with another account",
+		});
+	if ((await User.find({ phone: user.phone })).length > 0)
+		return res.status(400).json({
+			msg: "this email address is already registered with another account",
+		});
+	if ((await User.find({ pan: user.pan })).length > 0)
+		return res.status(400).json({
+			msg: "this pan no is already registered with another account",
 		});
 	if (!validatePassword(user.password))
 		return res.status(400).json({
@@ -149,7 +169,9 @@ router.post("/generate-otp", async (req, res) => {
 		await sendMail(foundUser.email, "One Time Password", emailBody);
 		res.json({ msg: `OTP sent to ${foundUser.email}` });
 	} catch (err) {
-		return res.status(500).json({ msg: "error generating and sending OTP" });
+		return res
+			.status(500)
+			.json({ msg: "error generating and sending OTP" });
 	}
 });
 
@@ -174,7 +196,8 @@ router.post("/reset-password", async (req, res) => {
 
 	const user = await User.findById(foundOTP.user);
 
-	if (user.email != email) return res.status(400).json({ msg: "invalid otp" });
+	if (user.email != email)
+		return res.status(400).json({ msg: "invalid otp" });
 
 	const salt = bcrypt.genSaltSync(config.auth.password.hashingRounds);
 	user.password = bcrypt.hashSync(password, salt);
@@ -197,7 +220,8 @@ router.post("/verify", async (req, res) => {
 
 	const user = await User.findById(foundOTP.user);
 
-	if (user.email != email) return res.status(400).json({ msg: "invalid otp" });
+	if (user.email != email)
+		return res.status(400).json({ msg: "invalid otp" });
 
 	user.verified = true;
 
