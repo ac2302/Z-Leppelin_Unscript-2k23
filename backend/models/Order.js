@@ -14,9 +14,6 @@ const orderSchema = mongoose.Schema(
 		type: {
 			type: String,
 		},
-		quantity: {
-			type: Number,
-		},
 		isFixed: {
 			type: Boolean,
 		},
