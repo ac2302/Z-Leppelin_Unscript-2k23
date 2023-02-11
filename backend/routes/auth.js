@@ -7,6 +7,7 @@ const sendMail = require("../utils/sendMail");
 const config = require("../config");
 const getRandomString = require("../utils/getRandomString");
 const authOnlyMiddleware = require("../middlewares/authOnly");
+const kyc = require("../utils/kyc");
 
 function validatePassword(password) {
 	return !(
@@ -201,10 +202,16 @@ router.post("/verify", async (req, res) => {
 			.status(400)
 			.json({ msg: "missing username, name, pan or panImg in req body" });
 
-	const user = await User.find({ username });
+	const user = await User.findOne({ username });
 	if (!user) return res.status(404).json({ msg: "user not found" });
 
+	if (!kyc(name, pan))
+		return res.status(400).json({ msg: "invalid details. kyc failed." });
+
 	user.verified = true;
+	user.pan = pan;
+	user.name = name;
+	user.panImg = panImg;
 
 	res.json(await user.save());
 });
