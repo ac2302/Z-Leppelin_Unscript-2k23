@@ -26,4 +26,6 @@ a {
   text-decoration: none;
   color: #fff;
 }
-
+canvas{
+  color: aliceblue !important;
+}

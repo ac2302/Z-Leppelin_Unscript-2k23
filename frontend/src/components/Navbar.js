@@ -22,6 +22,11 @@ const NavLinks = [
       id: 4,
       name : "Table",
       link : '/table'
+    },
+    {
+      id: 5,
+      name : "Profile",
+      link : '/profile'
     }
   ]
 

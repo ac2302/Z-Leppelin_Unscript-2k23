@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Verify from './pages/Verify';
 import Table from './pages/Table';
 import {BrowserRouter as Router , Route, Routes} from "react-router-dom"
+import Profile from './pages/profile';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/sign" element={<Sign/>}/>
         <Route path="/verify" element={<Verify/>}/>
+        <Route path="/Profile" element={<Profile/>}/>
       </Routes>
     </Router>
   );

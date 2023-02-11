@@ -38,9 +38,11 @@ const Container = styled.div`
 margin-top: 80px;
 margin-left: 80px;
 h1 {
+  margin-top:10vh;
   font-size: 65px;
 }
 h2 {
+  margin-top: 35vh;
   font-size: 30px;
 }
 `
@@ -125,7 +127,7 @@ const Content = styled.div`
   h2 {
     color: #f7057e;
     font-size: 4rem;
-    margin-top: 1.2em;
+    margin-top: 40vh;
     padding: 0;
     line-height: 0;
     margin-bottom: 1.2em;
