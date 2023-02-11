@@ -8,6 +8,10 @@ module.exports = {
 		string: process.env.DB_STRING,
 		cleanInterval: 1000 * 60 * 5, // 5 min
 	},
+	idfy: {
+		accountId: process.env.IDFY_ACCOUNT_ID,
+		apiKey: process.env.IDFY_API_KEY,
+	},
 	mail: {
 		credentials: {
 			email: process.env.EMAIL,
