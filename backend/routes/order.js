@@ -16,6 +16,10 @@ router.get("/mine/completed", authOnlyMiddleware([]), async (req, res) => {
 	res.json(await Order.find({ user: req.auth.user, completed: true }));
 });
 
+router.get("/mine/pending", authOnlyMiddleware([]), async (req, res) => {
+	res.json(await Order.find({ user: req.auth.user, completed: false }));
+});
+
 router.post("/", authOnlyMiddleware([]), async (req, res) => {
 	let { bond, type, quantity, isFixed, price } = req.body;
 
@@ -54,7 +58,11 @@ router.post("/", authOnlyMiddleware([]), async (req, res) => {
 		if (price) {
 			if (type == "buy" && price >= comparingOrder.price) {
 				quantity--;
-				resolveOrder(comparingOrder, comparingOrder.price, req.auth.user);
+				resolveOrder(
+					comparingOrder,
+					comparingOrder.price,
+					req.auth.user
+				);
 			} else if (type == "sell" && price <= comparingOrder.price) {
 				quantity--;
 				resolveOrder(comparingOrder, price, req.auth.user);
