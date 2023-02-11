@@ -68,7 +68,7 @@ const Overlay = () => {
 
         <div>
         <label htmlFor="paNumber">Pan Number</label>
-              <input type="text" name="paNumber" id="paNumber" placeholder='Enter password...' value={formData.password} onChange={handlerForm} autoComplete="off"/>
+              <input type="text" name="paNumber" id="paNumber" placeholder='Enter password...' value={formData.paNumber} onChange={handlerForm} autoComplete="off"/>
         </div>
 
         <div>

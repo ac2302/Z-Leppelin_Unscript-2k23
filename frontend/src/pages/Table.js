@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
-
+import ViewTrade from '../components/ViewTrade'
 const pusharray = [
     {
       "SYMBOL": "NHAI",
@@ -117,6 +117,7 @@ const pusharray = [
 
 const Table = () => {
     const [attemptData, setAttempts] = useState([])
+    const [modal, setModal] = useState("open")
     const [search, setSearch] = useState({
         name : "",
     })
@@ -187,6 +188,7 @@ const Table = () => {
             <th>OWNED QUANTITY</th>
             <th>TRADE</th>
         </tr>
+        
         </thead>
             <tbody>
                  { 
@@ -204,12 +206,15 @@ const Table = () => {
                             <td>{item.OWNEDQUANTITY}</td>
                             <td>{item.CREDITRATING}</td>
                             <td>{item.MATURITYDATE}</td>
+
                             <td>
                             <Btns>
                             TRADE
                             </Btns>
+
                             </td>
                         </tr>
+                        <Break/>
                         
                         </>
                     )
@@ -220,7 +225,7 @@ const Table = () => {
     </Box>
     </Main>
 
-
+<ViewTrade modal={modal} setModal={setModal}/>
     </Container>
   )
 }
@@ -285,7 +290,7 @@ const Header = styled.div`
 display: flex;
 justify-content: space-between;
 width: 100%;
-max-width: 1300px;
+max-width: 1350px;
 margin: 0 auto;
 /* background-color: red; */
 margin-top: 50px;
@@ -293,9 +298,7 @@ margin-top: 50px;
 
 
 const Main = styled.div`
-/* background-color: yellowgreen; */
-/* height: 200px; */
-margin-top: -50px;
+margin-top: -65px;
 `;
 
 const BtnO = styled.button`
@@ -315,7 +318,7 @@ color: #F44336;
 const Box = styled.div`
 position: relative;
 width: 100%;
-max-width: 1300px;
+max-width: 1350px;
 margin: 0 auto;
 /* margin-top: -50px; */
 height: 450px;
@@ -326,7 +329,7 @@ overflow-y: scroll;
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 16px;
+    /* font-size: 16px; */
     text-align: center;
     thead {
         background-color: #B90E50;
@@ -336,9 +339,12 @@ table {
 }
 th, td {
     padding: 10px;
+    color: rgba(0,0,0,0.7);
 }
 th {
     color: #fff;
+    font-size: 15px;
+    font-weight: 400;
 }
 td {
     background-color: #fff;
@@ -350,6 +356,7 @@ tr {
     box-shadow: 0 0 10px rgba(0,0,0,0.10);
     padding: 10px;
     margin: 20px;
+
     &:first-child {
         box-shadow: none;
         
@@ -357,20 +364,16 @@ tr {
 }
 `;
 
-const Btns = styled.div`
-a {
-        text-decoration: none;
-        color: #fff;
-        padding: 5px 8px;
-        background: red;
-        color: #fff;
-        outline: none;
-        border: none;
-        border-radius: 5px;
-        background: #5C36BB;
-        cursor: pointer;
-        font-size: 13px;
-    }
+const Btns = styled.button`
+border: none;
+outline: none;
+background: #5C36BB;
+color: #fff;
+padding: 5px 8px;
+border-radius: 5px;
+cursor: pointer;
+font-size: 13px;
+
 `;
 
 

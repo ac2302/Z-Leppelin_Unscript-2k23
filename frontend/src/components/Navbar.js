@@ -17,6 +17,11 @@ const NavLinks = [
       id: 3,
       name : "Sign",
       link : '/sign'
+    },
+    {
+      id: 4,
+      name : "Table",
+      link : '/table'
     }
   ]
 
