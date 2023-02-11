@@ -35,15 +35,15 @@ const userSchema = mongoose.Schema(
 		},
 		name: {
 			type: String,
-			required: true,
+			// required: true,
 		},
 		pan: {
 			type: String,
-			required: true,
+			// required: true,
 		},
 		panImg: {
 			type: String,
-			required: true,
+			// required: true,
 		},
 		balance: {
 			type: Number,

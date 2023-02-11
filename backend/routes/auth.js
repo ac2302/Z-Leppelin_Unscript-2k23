@@ -21,19 +21,9 @@ router.post("/register", async (req, res) => {
 
 	// missing details
 	if (!user) return res.status(400).json({ msg: "missing user in body" });
-	if (
-		!(
-			user.username &&
-			user.password &&
-			user.email &&
-			user.phone &&
-			user.pan &&
-			user.panImg &&
-			user.name
-		)
-	)
+	if (!(user.username && user.password && user.email && user.phone))
 		return res.status(400).json({
-			msg: "missing username, password, email, phone, pan, panImg, or name",
+			msg: "missing username, password, email, phone",
 		});
 
 	// invalid details
@@ -45,12 +35,9 @@ router.post("/register", async (req, res) => {
 		});
 	if ((await User.find({ phone: user.phone })).length > 0)
 		return res.status(400).json({
-			msg: "this email address is already registered with another account",
+			msg: "this phone no is already registered with another account",
 		});
-	if ((await User.find({ pan: user.pan })).length > 0)
-		return res.status(400).json({
-			msg: "this pan no is already registered with another account",
-		});
+
 	if (!validatePassword(user.password))
 		return res.status(400).json({
 			err: `password should be between ${config.auth.password.length.min} and ${config.auth.password.length.max} characters`,
