@@ -124,11 +124,21 @@ const Table = () => {
 		name: "",
 	});
 
+	const [bonds, setBonds] = useState([]);
+
 	// useEffect to run at start
 	useEffect(() => {
 		axios
 			.get(`${config.backendLocation}/bond`)
-			.then((res) => console.log(res.data));
+			.then((res) => setBonds(res.data));
+
+		const intervalRef = setInterval(() => {
+			axios
+				.get(`${config.backendLocation}/bond`)
+				.then((res) => setBonds(res.data));
+		}, 5000);
+
+		return () => clearInterval(intervalRef);
 	}, []);
 
 	const getData = () => {
