@@ -33,3 +33,7 @@
     --gradient-color-4: #0f3b5e;
   }
   
+  .profilePic{
+    width: 180px;
+    height: 180px;
+  }
