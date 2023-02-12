@@ -128,7 +128,12 @@ function Overlay(props) {
 				<Name onClick={() => setCompo("wishlist")}>
 					<h3>Wish List</h3>
 				</Name>
-				<Name>
+				<Name
+					onClick={() => {
+						localStorage.clear();
+						window.location = "/";
+					}}
+				>
 					<h3>Log Out</h3>
 				</Name>
 			</Profil>
