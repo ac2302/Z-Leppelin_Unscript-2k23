@@ -118,7 +118,7 @@ const pusharray = [
 ];
 
 const Table = () => {
-	const [attemptData, setAttempts] = useState([]);
+	const [attemptData, setAttempts] = useState(pusharray);
 	const [modal, setModal] = useState("close");
 	const [search, setSearch] = useState({
 		name: "",
@@ -141,25 +141,27 @@ const Table = () => {
 		return () => clearInterval(intervalRef);
 	}, []);
 
-	const getData = () => {
-		const Quizdata = JSON.parse(localStorage.getItem("quiz"));
-		// console.log(Quizdata, 'data')
-		setAttempts(Quizdata?.reverse());
-	};
-	useEffect(() => {
-		getData();
-	}, []);
+	// const getData = () => {
+	// 	const Quizdata = JSON.parse(localStorage.getItem("quiz"));
+	// 	// console.log(Quizdata, 'data')
+	// 	setAttempts(Quizdata?.reverse());
+	// };
+	// useEffect(() => {
+	// 	getData();
+	// }, []);
 	// console.log(attemptData, 'attempt-data')
 
 	const handlerInput = (e) => {
 		setSearch(e.target.value);
 		const quiz = e.target.value;
 		if (quiz === "") {
-			getData();
+			// getData();
+			setAttempts(pusharray);
 		} else {
 			const filterData = pusharray.filter((item) => {
 				return item.SYMBOL.toLowerCase().includes(quiz.toLowerCase());
 			});
+			console.log(filterData, "filterData");
 			setAttempts(filterData);
 		}
 	};
@@ -219,7 +221,7 @@ const Table = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{pusharray?.map((item, index) => {
+							{attemptData?.map((item, index) => {
 								return (
 									<>
 										<tr key={index}>

@@ -4,6 +4,7 @@ import { Box } from "@react-three/drei";
 import styled from "styled-components";
 import { Gradient } from "../lib/gradient";
 import '../styles.css'
+import {keyframes} from "styled-components"
 
 
 
@@ -15,15 +16,20 @@ import '../styles.css'
     // }, []);
   
     // BondZapp
+    {/* <canvas id="gradient-canvas" data-transition-in /> */}
     return (
       <Main>
-        {/* <canvas id="gradient-canvas" data-transition-in /> */}
+        
         <Container>
         <h1>BondZapp</h1>
         <h2>
-          A platform for the bond market to connect with <br /> the world 
+          A platform for the bond market to connect with the world 
         </h2>
         </Container>
+
+        <RightBg>
+          <img src="/assets/home.png" alt="" />
+        </RightBg>
       </Main>
     );
   }
@@ -34,16 +40,62 @@ const Home = () => {
   return <Overlay />
 }
 
-const Container = styled.div`
-margin-top: 80px;
-margin-left: 80px;
-h1 {
-  margin-top:10vh;
-  font-size: 65px;
+const rotate = keyframes`
+0% {
+  /* transform: rotate(0deg); */
+  transform: translateY(-20px);
 }
+50% {
+  /* transform: rotate(360deg); */
+  transform: translateY(20px);
+}
+100% {
+  /* transform: rotate(0deg); */
+  transform: translateY(-20px);
+}
+`
+const RightBg = styled.div`
+background-color: rgba(255, 255, 255, 0.1);
+width: 50%;
+height: 100%;
+animation: ${rotate} 2s linear infinite;
+transition: animation 0.5s ease;
+img {
+  width: 100%;
+  height: 100%;
+  display : block;
+  object-fit: cover;
+}
+
+
+`;
+
+const Container = styled.div`
+position: relative;
+width: 50%;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+
+h1 {
+  font-size: 6em;
+  margin-bottom: 20px;
+}
+
 h2 {
-  margin-top: 35vh;
-  font-size: 30px;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+
+`
+
+const ImgContainer = styled.div`
+margin-left: 130vh;
+margin-top: -35vh;
+img {
+  width: 170px;
 }
 `
 
@@ -52,7 +104,12 @@ const Main = styled.main`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-top: 200px;
+  justify-content: space-between;
+  /* background-color: red; */
+  /* height: 100%; */
   @media only screen and (max-width: 1200px) {
     flex-direction: column;
   }
