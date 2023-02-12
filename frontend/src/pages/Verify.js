@@ -56,7 +56,7 @@ const Overlay = () => {
 						panImg,
 					})
 					.then((res) => {
-						window.location = "/";
+						window.location = "/sign";
 					})
 					.catch((err) => {
 						console.error(err);

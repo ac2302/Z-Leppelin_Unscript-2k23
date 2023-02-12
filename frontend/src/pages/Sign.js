@@ -57,7 +57,7 @@ function Overlay() {
 			if (name && email && address && password && Confirmpassword) {
         // axios sign up
         axios.post(`${config.backendLocation}/auth/register`, {email, password, phone:address, username:name}).then((res) => {
-          navigate("/verify?username="+name);
+          window.location = "/verify?username="+name;
           setForm(userData);
         });
 
@@ -99,7 +99,7 @@ function Overlay() {
 					console.log(res.data);
 					if (res.data.token) {
 						localStorage.setItem("token", res.data.token);
-						navigate("/");
+						window.location = "/";
 					} else {
 						alert("Invalid Credentials");
 					}
