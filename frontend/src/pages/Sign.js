@@ -170,7 +170,7 @@ function Overlay() {
 											Enter Password
 										</label>
 										<input
-											type="text"
+											type="password"
 											name="password"
 											id="password"
 											placeholder="Enter password..."
@@ -184,7 +184,7 @@ function Overlay() {
 											Enter Password
 										</label>
 										<input
-											type="text"
+											type="password"
 											name="Confirmpassword"
 											id="Confirmpassword"
 											placeholder="Enter password..."
@@ -221,7 +221,7 @@ function Overlay() {
 											Enter Password
 										</label>
 										<input
-											type="text"
+											type="password"
 											name="passwordID"
 											id="passwordID"
 											placeholder="Enter password..."
