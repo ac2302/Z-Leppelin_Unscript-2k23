@@ -19,7 +19,7 @@ const userData = {
 	Quantity: "",
 	Price: "",
 };
-const ViewTrade = ({ setModal, modal, bond }) => {
+const ViewTrade = ({ setModal, modal, bond, balance }) => {
 	const [btns, setBtn] = useState("");
 	const [formData, setForm] = useState(userData);
 	const [Block, setBlock] = useState(false);
@@ -70,6 +70,7 @@ const ViewTrade = ({ setModal, modal, bond }) => {
 				<Container>
 					<Box>
 						<Bell>
+							<p style={{ color: "#000" }}>₹ {balance}</p>
 							<button onClick={handlerClose}>
 								<CloseIcon />
 							</button>

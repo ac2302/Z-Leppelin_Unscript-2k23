@@ -127,6 +127,7 @@ const Table = () => {
 
 	const [bonds, setBonds] = useState([]);
 	const [selectedBond, setSelectedBond] = useState();
+	const [balance, setBalance] = useState();
 
 	// useEffect to run at start
 	useEffect(() => {
@@ -134,6 +135,13 @@ const Table = () => {
 			.get(`${config.backendLocation}/bond`)
 			.then((res) => setBonds(res.data));
 
+		axios
+			.get(`${config.backendLocation}/user/self`, {
+				headers: { token: localStorage.token },
+			})
+			.then((res) => {
+				setBalance(res.data.balance);
+			});
 		const intervalRef = setInterval(() => {
 			axios
 				.get(`${config.backendLocation}/bond`)
@@ -256,9 +264,7 @@ const Table = () => {
 												<Btns
 													onClick={() => {
 														// console.log(item._id)
-														setSelectedBond(
-															item
-														);
+														setSelectedBond(item);
 														handlerModal();
 													}}
 												>
@@ -275,7 +281,12 @@ const Table = () => {
 				</Box>
 			</Main>
 
-			<ViewTrade modal={modal} setModal={setModal} bond={selectedBond} />
+			<ViewTrade
+				modal={modal}
+				setModal={setModal}
+				bond={selectedBond}
+				balance={balance}
+			/>
 		</Container>
 	);
 };
