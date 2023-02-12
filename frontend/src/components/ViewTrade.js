@@ -77,8 +77,52 @@ const ViewTrade = ({ setModal, modal, bond, balance }) => {
 						</Bell>
 						<Navigate>
 							<p style={{ color: "#000" }}>{owned}</p>
-							<Btns1 onClick={() => setSells(!sell)}>Buy</Btns1>
-							<Btns1 onClick={() => setSells(!sell)}>Sell</Btns1>
+							<Btns1
+								onClick={() => {
+									setSells(!sell);
+									console.log(formData);
+									axios.post(
+										`${config.backendLocation}/order/`,
+										{
+											quantity: formData.Quantity,
+											price: formData.Price,
+											bond: bond._id,
+											type: "buy",
+											isFixed: formData.Price != "",
+										},
+										{
+											headers: {
+												token: localStorage.token,
+											},
+										}
+									);
+								}}
+							>
+								Buy
+							</Btns1>
+							<Btns1
+								onClick={() => {
+									setSells(!sell);
+									console.log(formData);
+									axios.post(
+										`${config.backendLocation}/order/`,
+										{
+											quantity: formData.Quantity,
+											price: formData.Price,
+											bond: bond._id,
+											type: "sell",
+											isFixed: formData.Price != "",
+										},
+										{
+											headers: {
+												token: localStorage.token,
+											},
+										}
+									);
+								}}
+							>
+								Sell
+							</Btns1>
 						</Navigate>
 						{sell && (
 							<>
@@ -86,8 +130,7 @@ const ViewTrade = ({ setModal, modal, bond, balance }) => {
 									<label htmlFor="name">Quantity</label>
 									<input
 										type="text"
-										placeholder=
-											"Enter Quantity..."
+										placeholder="Enter Quantity..."
 										id="Quantity"
 										name="Quantity"
 										value={formData.Quantity}
