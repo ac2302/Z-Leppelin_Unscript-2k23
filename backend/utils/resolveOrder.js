@@ -6,10 +6,12 @@ async function resolveOrder(order, price, user) {
 	const orderUser = await User.findById(order.user);
 	const orderBond = await Bond.findById(order.bond);
 
+	if (!price) price == orderBond.price[orderBond.price.length - 1];
+
 	if (order.type == "buy") {
-		orderUser.balance -= order.price;
+		orderUser.balance -= price;
 	} else {
-		orderUser.balance += order.price;
+		orderUser.balance += price;
 	}
 
 	orderBond.price.push(price);
