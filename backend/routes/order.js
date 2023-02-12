@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/mine", authOnlyMiddleware([]), async (req, res) => {
-	res.json(await Order.find({ user: req.auth.user }));
+	res.json(await Order.find({ user: req.auth.user }).populate("bond"));
 });
 
 router.get("/mine/completed", authOnlyMiddleware([]), async (req, res) => {

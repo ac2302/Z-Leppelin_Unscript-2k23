@@ -152,7 +152,7 @@ function Overlay() {
 
 									<div>
 										<label htmlFor="address">
-											Enter Address
+											Enter number
 										</label>
 										<input
 											type="text"
@@ -362,10 +362,10 @@ const Form = styled.div`
 		background: transparent;
 		border: 1px solid #fff;
 		border-radius: 5px;
-		color: #000;
+		color: #fff;
 
 		&::placeholder {
-			color: #000;
+			color: #fff;
 			background-color: transparent;
 		}
 	}

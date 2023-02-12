@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ViewTrade from "../components/ViewTrade";
 import axios from "axios";
 import config from "../config";
+import Navbar from "../components/Navbar";
 const pusharray = [
 	{
 		SYMBOL: "NHAI",
@@ -125,6 +126,8 @@ const Table = () => {
 	});
 
 	const [bonds, setBonds] = useState([]);
+	const [selectedBond, setSelectedBond] = useState();
+	const [balance, setBalance] = useState();
 
 	// useEffect to run at start
 	useEffect(() => {
@@ -132,6 +135,13 @@ const Table = () => {
 			.get(`${config.backendLocation}/bond`)
 			.then((res) => setBonds(res.data));
 
+		axios
+			.get(`${config.backendLocation}/user/self`, {
+				headers: { token: localStorage.token },
+			})
+			.then((res) => {
+				setBalance(res.data.balance);
+			});
 		const intervalRef = setInterval(() => {
 			axios
 				.get(`${config.backendLocation}/bond`)
@@ -216,31 +226,50 @@ const Table = () => {
 								<th>LTP</th>
 								<th>CREDIT RATING</th>
 								<th>MATURITY DATE</th>
-								<th>OWNED QUANTITY</th>
+								{/* <th>OWNED QUANTITY</th> */}
 								<th>TRADE</th>
 							</tr>
 						</thead>
 						<tbody>
-							{attemptData?.map((item, index) => {
+							{bonds.map((item, index) => {
 								return (
 									<>
 										<tr key={index}>
 											<td>{index + 1}</td>
-											<td>{item.SYMBOL}</td>
-											<td>{item.SERIES}</td>
+											<td>{item.symbol}</td>
+											<td>{item.series}</td>
 											<td>
-												{item.BONDTYPE}/
-												{item.quizLength}
+												{item.bondType}
+												{/* {item.quizLength} */}
 											</td>
-											<td>{item.COUPONRATE}</td>
-											<td>{item.FACEVALUE}</td>
-											<td>{item.LTP}</td>
-											<td>{item.OWNEDQUANTITY}</td>
-											<td>{item.CREDITRATING}</td>
-											<td>{item.MATURITYDATE}</td>
+											<td>{item.couponRate}</td>
+											<td>{item.faceValue}</td>
+											<td>
+												{
+													item.price[
+														item.price.length - 1
+													]
+												}
+											</td>
+											<td>{item.creditRating}</td>
+											<td>
+												{new Date(item.maturityDate)
+													.toISOString()
+													.replace(/T.*/, "")
+													.split("-")
+													.reverse()
+													.join("-")}
+											</td>
+											{/* <td>{item.MATURITYDATE}</td> */}
 
 											<td>
-												<Btns onClick={handlerModal}>
+												<Btns
+													onClick={() => {
+														// console.log(item._id)
+														setSelectedBond(item);
+														handlerModal();
+													}}
+												>
 													TRADE
 												</Btns>
 											</td>
@@ -254,7 +283,12 @@ const Table = () => {
 				</Box>
 			</Main>
 
-			<ViewTrade modal={modal} setModal={setModal} />
+			<ViewTrade
+				modal={modal}
+				setModal={setModal}
+				bond={selectedBond}
+				balance={balance}
+			/>
 		</Container>
 	);
 };

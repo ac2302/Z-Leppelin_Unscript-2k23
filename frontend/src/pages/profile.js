@@ -123,7 +123,7 @@ function Overlay(props) {
 					<h3>Dashboard</h3>
 				</Name>
 				<Name onClick={() => setCompo("allbonds")}>
-					<h3>All Bonds</h3>
+					<h3>Orders</h3>
 				</Name>
 				<Name onClick={() => setCompo("wishlist")}>
 					<h3>Wish List</h3>
