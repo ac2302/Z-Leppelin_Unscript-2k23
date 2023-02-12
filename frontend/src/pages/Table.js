@@ -224,7 +224,7 @@ const Table = () => {
 								<th>LTP</th>
 								<th>CREDIT RATING</th>
 								<th>MATURITY DATE</th>
-								<th>OWNED QUANTITY</th>
+								{/* <th>OWNED QUANTITY</th> */}
 								<th>TRADE</th>
 							</tr>
 						</thead>
@@ -258,7 +258,7 @@ const Table = () => {
 													.reverse()
 													.join("-")}
 											</td>
-											<td>{item.MATURITYDATE}</td>
+											{/* <td>{item.MATURITYDATE}</td> */}
 
 											<td>
 												<Btns
