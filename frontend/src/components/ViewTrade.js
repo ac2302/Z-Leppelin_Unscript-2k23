@@ -86,10 +86,8 @@ const ViewTrade = ({ setModal, modal, bond, balance }) => {
 									<label htmlFor="name">Quantity</label>
 									<input
 										type="text"
-										disabled={Block}
-										placeholder={
-											Block ? "NA" : "Enter Quantity..."
-										}
+										placeholder=
+											"Enter Quantity..."
 										id="Quantity"
 										name="Quantity"
 										value={formData.Quantity}
@@ -101,8 +99,11 @@ const ViewTrade = ({ setModal, modal, bond, balance }) => {
 								<Inputs>
 									<label htmlFor="name">Price</label>
 									<input
+										disabled={Block}
 										type="text"
-										placeholder="Enter Price..."
+										placeholder={
+											Block ? "NA" : "Enter Price..."
+										}
 										id="Price"
 										name="Price"
 										value={formData.Price}
