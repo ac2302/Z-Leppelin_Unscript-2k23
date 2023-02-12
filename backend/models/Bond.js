@@ -12,11 +12,14 @@ const bondSchema = mongoose.Schema(
 		bondType: {
 			type: String,
 		},
+		faceValue: {
+			type: Number,
+		},
 		couponRate: {
 			type: Number,
 		},
 		MaturityDate: {
-			type: Number,
+			type: Date,
 		},
 		creditRating: {
 			type: String,
