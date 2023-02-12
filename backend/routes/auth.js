@@ -73,11 +73,11 @@ router.post("/login", async (req, res) => {
 
 	// missing details
 	if (!user) return res.status(400).json({ msg: "missing user in body" });
-	if (!(user.username && user.password))
-		return res.status(400).json({ msg: "missing username or password" });
+	if (!(user.email && user.password))
+		return res.status(400).json({ msg: "missing email or password" });
 
 	// looking for user
-	const foundUsers = await User.find({ username: user.username });
+	const foundUsers = await User.find({ email: user.email });
 	if (foundUsers.length === 0)
 		return res.status(404).json({ msg: "user not found" });
 	const foundUser = foundUsers[0];
